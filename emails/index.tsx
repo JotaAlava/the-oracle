@@ -21,19 +21,17 @@ export const NotionWaitlistEmail = ({ userFirstname }: EmailProps) => (
     <Body style={main}>
       <Container style={container}>
         <Img
-          src={`https://nextjs-notion-waitlist.vercel.app/waitlist-logo.png`}
-          width="220"
+          src={`https://www.sophrosyn3.com/logo.png`}
           height="100"
-          alt="Notion Waitlist Logo"
+          alt="Oracle Logo"
           style={logo}
         />
         <Text style={greeting}>Hi {userFirstname},</Text>
+        <Text style={paragraph}>Attraction isn’t a choice.</Text>
         <Text style={paragraph}>
-          Thanks for joining the waitlist for The Oracle!
-        </Text>
-        <Text style={paragraph}>
-          Attraction isn’t a choice. You’ve taken the first step to mastering
-          it. Your access to The Oracle is pending. Speak wisely until then.
+          Thanks for joining the waitlist for The Oracle! You&apos;ve taken the
+          first step to mastering it. Your access to The Oracle is pending.
+          Speak wisely until then.
         </Text>
         <Text style={signOff}>
           Best regards,
@@ -42,7 +40,7 @@ export const NotionWaitlistEmail = ({ userFirstname }: EmailProps) => (
         </Text>
         <Hr style={hr} />
         <Text style={footer}>
-          You received this email because you signed up for the Oracle's
+          You received this email because you signed up for the Oracle&apos;s
           waitlist. If you believe this is a mistake, feel free to ignore this
           email.
         </Text>
@@ -60,7 +58,7 @@ export default NotionWaitlistEmail;
 const main = {
   fontFamily: 'figtree, "Helvetica Neue", Helvetica, Arial, sans-serif',
   padding: "40px 0",
-  color: "#cccccc",
+  color: "#ffffff",
 };
 
 const container = {
@@ -70,6 +68,7 @@ const container = {
   borderRadius: "12px",
   boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
   maxWidth: "600px",
+  color: "#ffffff",
 };
 
 const logo = {
