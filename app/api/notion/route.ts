@@ -10,13 +10,20 @@ export async function POST(request: Request) {
         database_id: `${process.env.NOTION_DB}`,
       },
       properties: {
+        // Assuming "Email" is a title property in Notion
         Email: {
-          type: "email",
-          email: body?.email,
-        },
-        Name: {
-          type: "title",
           title: [
+            {
+              type: "text",
+              text: {
+                content: body?.email,
+              },
+            },
+          ],
+        },
+        // Assuming "Name" is a plain text or email field (adjust type accordingly)
+        Name: {
+          rich_text: [
             {
               type: "text",
               text: {
