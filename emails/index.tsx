@@ -17,7 +17,9 @@ interface EmailProps {
 export const NotionWaitlistEmail = ({ userFirstname }: EmailProps) => (
   <Html>
     <Head />
-    <Preview>Thanks for Joining the Waitlist, {userFirstname}! 🎉</Preview>
+    <Preview>
+      Thanks for joining The Oracle waitlist, {userFirstname}! 🎉
+    </Preview>
     <Body style={main}>
       <Container style={container}>
         <Img
