@@ -41,7 +41,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const { data, error } = await resend.emails.send({
     from: "The Oracle<admin@sophrosyn3.com>",
     to: [email],
-    subject: "Attraction is not choice.",
+    subject: "Attraction is not a choice.",
     reply_to: "admin@sophrosyn3.com",
     html: await render(WelcomeTemplate({ userFirstname: firstname })),
   });
