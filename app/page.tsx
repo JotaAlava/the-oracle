@@ -113,40 +113,6 @@ export default function Home() {
       <section className="flex flex-col items-center px-4 sm:px-6 lg:px-8">
         <CTA />
 
-        <div className="mt-16 flex flex-col items-center gap-4 text-center text-yellow-100/75">
-          <p className="text-lg font-semibold tracking-tight sm:text-xl">
-            How it works
-          </p>
-          <div className="flex flex-col items-center justify-center gap-6 text-base text-zinc-300 sm:flex-row sm:gap-12 sm:text-lg">
-            <div className="flex flex-col items-center gap-1">
-              <span className="font-medium text-yellow-100">
-                1. Receive a Message
-              </span>
-              <span className="text-sm text-zinc-400">
-                Share it with The Oracle
-              </span>
-            </div>
-            <div className="hidden text-xl text-yellow-100/30 sm:block">→</div>
-            <div className="flex flex-col items-center gap-1">
-              <span className="font-medium text-yellow-100">
-                2. Select the Configure Response
-              </span>
-              <span className="text-sm text-zinc-400">
-                (Push/pull, neg, cocky)
-              </span>
-            </div>
-            <div className="hidden text-xl text-yellow-100/30 sm:block">→</div>
-            <div className="flex flex-col items-center gap-1">
-              <span className="font-medium text-yellow-100">
-                3. Get Suggestions
-              </span>
-              <span className="text-sm text-zinc-400">
-                Crafted with years of tried and true social dynamic experience.
-              </span>
-            </div>
-          </div>
-        </div>
-
         <Form
           name={name}
           email={email}
@@ -156,6 +122,40 @@ export default function Home() {
           loading={loading}
         />
       </section>
+
+      <div className="mt-16 flex flex-col items-center gap-4 text-center text-yellow-100/75">
+        <p className="text-lg font-semibold tracking-tight sm:text-xl">
+          How it works
+        </p>
+        <div className="flex flex-col items-center justify-center gap-6 text-base text-zinc-300 sm:flex-row sm:gap-12 sm:text-lg">
+          <div className="flex flex-col items-center gap-1">
+            <span className="font-medium text-yellow-100">
+              1. Receive a Message
+            </span>
+            <span className="text-sm text-zinc-400">
+              Share it with The Oracle
+            </span>
+          </div>
+          <div className="hidden text-xl text-yellow-100/30 sm:block">→</div>
+          <div className="flex flex-col items-center gap-1">
+            <span className="font-medium text-yellow-100">
+              2. Select the Configure Response
+            </span>
+            <span className="text-sm text-zinc-400">
+              (Push/pull, neg, cocky)
+            </span>
+          </div>
+          <div className="hidden text-xl text-yellow-100/30 sm:block">→</div>
+          <div className="flex flex-col items-center gap-1">
+            <span className="font-medium text-yellow-100">
+              3. Get Suggestions
+            </span>
+            <span className="text-sm text-zinc-400">
+              Crafted with years of tried and true social dynamic experience.
+            </span>
+          </div>
+        </div>
+      </div>
 
       <Footer />
 
