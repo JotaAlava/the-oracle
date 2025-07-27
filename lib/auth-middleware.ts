@@ -14,6 +14,8 @@ export async function verifyFirebaseToken(
 
     let authHeader = request.headers.get("Authorization");
 
+    console.log(`all headers: ${JSON.stringify(request.headers)}`);
+
     if (!authHeader && process.env.NODE_ENV === "production") {
       const vercelHeaders = request.headers.get("x-vercel-sc-headers");
       if (vercelHeaders) {
