@@ -13,13 +13,13 @@ export async function verifyFirebaseToken(
     }
 
     let authHeader = request.headers.get("Authorization");
-    
-    // In production on Vercel, check for headers in x-vercel-sc-headers
+
     if (!authHeader && process.env.NODE_ENV === "production") {
       const vercelHeaders = request.headers.get("x-vercel-sc-headers");
       if (vercelHeaders) {
         try {
           const parsedHeaders = JSON.parse(vercelHeaders);
+          console.log(`parsedHeaders received: ${parsedHeaders}`);
           authHeader = parsedHeaders.Authorization;
         } catch (e) {
           if (process.env.NODE_ENV !== "production") {
@@ -29,6 +29,7 @@ export async function verifyFirebaseToken(
       }
     }
 
+    console.log(`authHeader received: ${authHeader}`);
     if (process.env.NODE_ENV !== "production") {
       console.log(`authHeader received: ${authHeader}`);
     }
@@ -38,13 +39,13 @@ export async function verifyFirebaseToken(
     }
 
     const token = authHeader.split("Bearer ")[1];
-    
+
     if (process.env.NODE_ENV !== "production") {
       console.log(`token parsed: ${token}`);
     }
-    
+
     const decodedToken = await auth.verifyIdToken(token);
-    
+
     if (process.env.NODE_ENV !== "production") {
       console.log(`decodedToken: ${JSON.stringify(decodedToken)}`);
     }
