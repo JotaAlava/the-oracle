@@ -5,8 +5,14 @@ export async function verifyFirebaseToken(
   request: NextRequest,
 ): Promise<string | null> {
   try {
-    const authHeader = request.headers.get("Authorization");
+    const authHeader =
+      request.headers.get("Authorization") ||
+      request.headers.get("authorization") ||
+      request.headers.get("AUTHORIZATION");
+
     console.log(`authHeader received: ${authHeader}`);
+    console.log(`All headers:`, Object.fromEntries(request.headers.entries()));
+    console.log(`Auth header present: ${!!authHeader}`);
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return null;
