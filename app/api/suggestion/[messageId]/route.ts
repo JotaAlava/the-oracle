@@ -2,14 +2,20 @@ import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { OpenAI } from "openai";
 
-// Add environment variable check
-if (!process.env.OPENAI_API_KEY) {
-  throw new Error("OPENAI_API_KEY is not defined");
-}
+// Initialize OpenAI client lazily to avoid build-time issues
+let openai: OpenAI | null = null;
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+function getOpenAIClient() {
+  if (!openai) {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error("OPENAI_API_KEY is not defined");
+    }
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+  return openai;
+}
 
 const instructions = `You are a PUA instructor. In the vein if Mystery, Julien Blanc and Social Dynamics. Give me 2 response suggestions for each of the following archetypes:
 🎩 Mystery, 😏 Julien Blanc, 👑 High-Status Guy, 🦊 Trickster, 🧘 Emotionally Fluent. RESULT FORMAT: Must be a json array where each row is as follows { persona: string, response: string}`;
@@ -40,8 +46,9 @@ export async function GET(
     }
 
     const messageBody: string = message.content;
-    const response = await openai.chat.completions.create({
-      model: "gpt-4.1", // Fixed: changed from "gpt-4.1" to valid model
+    const openaiClient = getOpenAIClient();
+    const response = await openaiClient.chat.completions.create({
+      model: "gpt-4", // Fixed: changed from "gpt-4.1" to valid model
       messages: [
         { role: "system", content: instructions },
         { role: "user", content: messageBody },
