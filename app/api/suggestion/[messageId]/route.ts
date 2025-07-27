@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const instructions = `You are a PUA instructor. In the vein if Mystery, Julien Blanc and Social Dynamics. Give me 2 response suggestions for each of the following archetypes:
-🎩 Mystery, 😏 Julien Blanc, 👑 High-Status Guy, 🦊 Trickster, 🧘 Emotionally Fluent. RESULT FORMAT: Must be a json array where each row is as follows { persona: string, response: string}`;
+🎩 The Magician, 😏 Shock & Awe, 👑 High-Status Guy, 🦊 Trickster, 🧘 Emotionally Fluent. RESULT FORMAT: Must be a json array where each row is as follows { persona: string, response: string}`;
 
 export async function GET(
   request: NextRequest,
