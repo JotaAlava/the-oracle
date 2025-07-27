@@ -40,11 +40,14 @@ export async function verifyFirebaseToken(
 
     const token = authHeader.split("Bearer ")[1];
 
+    console.log(`token received: ${token}`);
+
     if (process.env.NODE_ENV !== "production") {
       console.log(`token parsed: ${token}`);
     }
 
     const decodedToken = await auth.verifyIdToken(token);
+    console.log(`decodedToken received: ${decodedToken}`);
 
     if (process.env.NODE_ENV !== "production") {
       console.log(`decodedToken: ${JSON.stringify(decodedToken)}`);
