@@ -3,11 +3,6 @@ import { auth } from './firebase-admin';
 
 export async function verifyFirebaseToken(request: NextRequest): Promise<string | null> {
   try {
-    if (!auth) {
-      console.error('Firebase auth is not initialized');
-      return null;
-    }
-
     const authHeader = request.headers.get('Authorization');
     
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
