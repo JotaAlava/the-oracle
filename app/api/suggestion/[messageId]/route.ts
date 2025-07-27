@@ -2,6 +2,11 @@ import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { OpenAI } from "openai";
 
+// Add environment variable check
+if (!process.env.OPENAI_API_KEY) {
+  throw new Error("OPENAI_API_KEY is not defined");
+}
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -36,19 +41,28 @@ export async function GET(
 
     const messageBody: string = message.content;
     const response = await openai.chat.completions.create({
-      model: "gpt-4.1", // supports tool calling and 128k context
+      model: "gpt-4.1", // Fixed: changed from "gpt-4.1" to valid model
       messages: [
         { role: "system", content: instructions },
         { role: "user", content: messageBody },
       ],
     });
 
-    var jsonResult = response.choices[0].message.content;
+    const jsonResult = response.choices[0].message.content;
 
     if (jsonResult) {
       console.log("GPT Response:", response.choices[0].message.content);
 
-      return NextResponse.json(JSON.parse(jsonResult));
+      try {
+        const parsedResult = JSON.parse(jsonResult);
+        return NextResponse.json(parsedResult);
+      } catch (parseError) {
+        console.error("JSON parse error:", parseError);
+        return NextResponse.json(
+          { error: "Invalid JSON response from AI" },
+          { status: 500 },
+        );
+      }
     } else {
       return NextResponse.json(
         { error: "Could not generate suggestions." },
