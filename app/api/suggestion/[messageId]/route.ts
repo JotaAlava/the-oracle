@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: { messageId: string } },
 ) {
+  // Prevent build-time execution
+  if (process.env.NODE_ENV === "development" && !process.env.DATABASE_URL) {
+    return NextResponse.json(
+      { error: "Database not configured" },
+      { status: 500 },
+    );
+  }
+
   try {
     const messageId = parseInt(params.messageId);
 
@@ -14,6 +21,9 @@ export async function GET(
         { status: 400 },
       );
     }
+
+    // Dynamic import to avoid build-time issues
+    const { prisma } = await import("@/lib/prisma");
 
     const message = await prisma.message.findFirst({
       where: {
