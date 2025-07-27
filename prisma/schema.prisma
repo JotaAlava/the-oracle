@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_CONNECTION_STRING")
+}
+
+model Message {
+  id      Int      @id @default(autoincrement())
+  source  String
+  content String   @db.Text
+  userId  String   @map("user_id")
+  created DateTime @default(now()) @map("created_at")
+  updated DateTime @updatedAt @map("updated_at")
+  deleted Boolean  @default(false)
+
+  @@map("messages")
+}
