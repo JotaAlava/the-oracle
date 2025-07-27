@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 export async function GET(
   request: NextRequest,
@@ -14,10 +15,22 @@ export async function GET(
       );
     }
 
+    const message = await prisma.message.findFirst({
+      where: {
+        id: messageId,
+        deleted: false,
+      },
+    });
+
+    if (!message) {
+      return NextResponse.json({ error: "Message not found" }, { status: 404 });
+    }
+
     return NextResponse.json({
       success: true,
       messageId,
-      message: "API route working",
+      messageContent: message.content,
+      message: "API route working with Prisma",
     });
   } catch (error) {
     console.error("Error:", error);
