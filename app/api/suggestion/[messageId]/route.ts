@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const instructions = `You are a PUA instructor. In the vein if Mystery, Julien Blanc and Social Dynamics. Give me 2 response suggestions for each of the following archetypes:
+const instructions = `You are a PUA instructor. In the vein if Mystery, Julien Blanc and Social Dynamics. I have received an SMS and I want you to give me 2 response suggestions for each of the following archetypes:
 🎩 The Magician, 😏 Shock & Awe, 👑 High-Status Guy, 🦊 Push/Pull, 🧘 Emotionally Fluent. RESULT FORMAT: Must be a json array where each row is as follows { persona: string, response: string}. <EXAMPLES> Message: Haha! Cute. Ok. What do you need help with? System: 
 
 [
