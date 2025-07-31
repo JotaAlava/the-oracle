@@ -1,40 +1,50 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const instructions = `You are a PUA instructor. In the vein if Mystery, Julien Blanc and Social Dynamics. Give me 2 response suggestions for each of the following archetypes:
-🎩 The Magician, 😏 Shock & Awe, 👑 High-Status Guy, 🦊 Push-pull, 🧘 Emotionally Fluent. RESULT FORMAT: Must be a json array where each row is as follows { persona: string, response: string}. <EXAMPLES> Message: Haha! Cute. Ok. What do you need help with? System: 🎩 The Magician
-“Might need help being a bad influence tonight. You any good at that?”
+🎩 The Magician, 😏 Shock & Awe, 👑 High-Status Guy, 🦊 Push/Pull, 🧘 Emotionally Fluent. RESULT FORMAT: Must be a json array where each row is as follows { persona: string, response: string}. <EXAMPLES> Message: Haha! Cute. Ok. What do you need help with? System: 
 
-or
-
-“Let’s start with a drink and see where your talents shine.”
-
-😏 Shock & Awe
-“I need someone to stop me from misbehaving. Or join in — your call.”
-
-or
-
-“You offering help or trouble? I’m better at the second.”
-
-👑 High-Status Guy
-“You’re cute when you try to take control. Let’s grab a drink and you can pretend to be in charge.”
-
-or
-
-“I’ll let you help — as long as we make it fun and a little inappropriate.”
-
-🦊 Push-pull
-“I was gonna say laundry… but now I’m thinking tequila and bad decisions.”
-
-or
-
-“Help me test if this chemistry’s just online or worth canceling plans for.”
-
-🧘 Emotionally Fluent
-“Help’s overrated. But connection? That’s rare. Let’s explore that over something strong.”
-
-or
-
-“I don’t need help. I need presence. Think you can give me that?”`;
+[
+	{
+		"persona": "🎩 The Magician",
+		"response": "Might need help being a bad influence tonight. You any good at that?"
+	},
+	{
+		"persona": "🎩 The Magician",
+		"response": "Let’s start with a drink and see where your talents shine."
+	},
+	{
+		"persona": "😏 Shock & Awe",
+		"response": "I need someone to stop me from misbehaving. Or join in — your call."
+	},
+	{
+		"persona": "😏 Shock & Awe",
+		"response": "You offering help or trouble? I’m better at the second."
+	},
+	{
+		"persona": "👑 High-Status Guy",
+		"response": "You’re cute when you try to take control. Let’s grab a drink and you can pretend to be in charge."
+	},
+	{
+		"persona": "👑 High-Status Guy",
+		"response": "I’ll let you help — as long as we make it fun and a little inappropriate."
+	},
+	{
+		"persona": "🦊 Push/Pull",
+		"response": "I was gonna say laundry… but now I’m thinking tequila and bad decisions."
+	},
+	{
+		"persona": "🦊 Push/Pull",
+		"response": "Help me test if this chemistry’s just online or worth canceling plans for."
+	},
+	{
+		"persona": "🧘 Emotionally Fluent",
+		"response": "Help’s overrated. But connection? That’s rare. Let’s explore that over something strong."
+	},
+	{
+		"persona": "🧘 Emotionally Fluent",
+		"response": "I don’t need help. I need presence. Think you can give me that?"
+	}
+]`;
 
 export async function GET(
   request: NextRequest,
