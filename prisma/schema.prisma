@@ -7,6 +7,20 @@ datasource db {
   url      = env("DB_CONNECTION_STRING")
 }
 
+enum UserTier {
+  free
+  monthly
+  yearly
+}
+
+model User {
+  id    String   @id @default(cuid()) @map("user_id")
+  email String   @unique
+  tier  UserTier @default(free)
+
+  @@map("users")
+}
+
 model Message {
   id      Int      @id @default(autoincrement())
   source  String

@@ -20,3 +20,26 @@ export async function verifyFirebaseToken(
     return null;
   }
 }
+
+export async function verifyFirebaseTokenWithEmail(
+  request: NextRequest,
+): Promise<{ uid: string; email: string } | null> {
+  try {
+    const authHeader = request.headers.get("oracle-authorization");
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return null;
+    }
+
+    const token = authHeader.split("Bearer ")[1];
+    const decodedToken = await auth.verifyIdToken(token);
+
+    return {
+      uid: decodedToken.uid,
+      email: decodedToken.email || "",
+    };
+  } catch (error) {
+    console.error("Firebase token verification failed:", error);
+    return null;
+  }
+}

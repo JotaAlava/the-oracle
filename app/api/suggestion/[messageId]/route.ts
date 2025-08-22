@@ -51,7 +51,10 @@ export async function GET(
   { params }: { params: { messageId: string } },
 ) {
   // Prevent build-time execution
-  if (process.env.NODE_ENV === "development" && !process.env.DATABASE_URL) {
+  if (
+    process.env.NODE_ENV === "development" &&
+    !process.env.DB_CONNECTION_STRING
+  ) {
     return NextResponse.json(
       { error: "Database not configured" },
       { status: 500 },
